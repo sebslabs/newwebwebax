@@ -2,25 +2,202 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #22272d; /* Obsidian Grey */
+  --stellar-yellow: #f1ff5c;
+  --obsidian-grey: #22272d;
+  --quartz-grey: #aab0b8;
+  --lunar-white: #f4faff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* WEBXPAY Official Primary Color Palette (Page 24) */
+  --color-stellar-yellow: #f1ff5c;
+  --color-obsidian-grey: #22272d;
+  --color-quartz-grey: #aab0b8;
+  --color-lunar-white: #f4faff;
+
+  /* WEBXPAY Official Secondary Color Palette (Page 25) */
+  --color-visionary-coral: #ff766b;
+  --color-clear-coral: #ffafa8;
+  --color-neon-jade: #8bff99;
+  --color-clear-jade: #bdffc0;
+  --color-sonic-blue: #62f0ff;
+  --color-clear-blue: #c5ffff;
+
+  /* WEBXPAY Official 3-Tier Typography Hierarchy (Pages 26-30) */
+  --font-sora: var(--font-sora), "Sora", sans-serif; /* Primary: Headings, Hero statements, CTAs */
+  --font-manrope: var(--font-manrope), "Manrope", sans-serif; /* Secondary: Paragraphs, Body, UI labels */
+  --font-space: var(--font-space-grotesk), "Space Grotesk", sans-serif; /* Tertiary: Technical data, Badges */
+  --font-sans: var(--font-manrope), "Manrope", sans-serif; /* Default body text */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid #22272d;
+  outline-offset: 2px;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 4.8s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 3.6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+@keyframes card-shimmer {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+.animate-card-shimmer {
+  animation: card-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes dash-travel {
+  from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-dash-travel {
+  stroke-dasharray: 6 6;
+  animation: dash-travel 2s linear infinite;
+}
+
+@keyframes qr-scan {
+  0%, 100% {
+    top: 6px;
+    opacity: 0.2;
+  }
+  50% {
+    top: 56px;
+    opacity: 0.85;
+  }
+}
+
+.animate-qr-scan {
+  animation: qr-scan 2.6s ease-in-out infinite;
+}
+
+@keyframes flow-bounce {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+
+.animate-flow-bounce {
+  animation: flow-bounce 1.6s ease-in-out infinite;
+}
+
+/* Modern clean scrollbar-hiding utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* XGateway billing toggle — price number entrance animation */
+@keyframes price-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-price-in {
+  animation: price-in 0.22s ease-out forwards;
 }
